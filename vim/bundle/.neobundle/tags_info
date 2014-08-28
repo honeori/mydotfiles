@@ -1,0 +1,10 @@
+ctrlp.vim
+neobundle.vim
+neocomplcache
+neomru.vim
+neosnippet
+neosnippet-snippets
+syntastic
+unite.vim
+vim-perl
+vim-quickrun

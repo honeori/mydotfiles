@@ -1,0 +1,15 @@
+snippet dbdo
+    my $rc = $DB->do(q{
+        ${1:sql}
+    });
+    ${2}
+
+snippet dbpre
+    my $sth = $DB->prepare(q{
+        ${1:sql}
+    });
+    $sth->execute(${2:arg});
+    ${3}
+
+snippet dump
+    use Data::Dumper; print Dumper(${1:code});
