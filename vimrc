@@ -61,13 +61,16 @@ let g:syntastic_enable_signs=1
 let g:syntastic_enable_perl_checker=1
 let g:syntastic_auto_loc_list=2
 
+"http://qiita.com/alpaca_taichou/items/056a4c42fe7a928973e6
+"div>ul>li <C-y>, とかでうまいことしてくれる
 NeoBundle 'mattn/emmet-vim'
+"vで選択して　S'とかする
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'taichouchou2/surround.vim'
 NeoBundle 'open-browser.vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'taichouchou2/html5.vim'
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 ".t ファイルなどをperlのファイルとみなすようにする
 augroup filetypedetect
