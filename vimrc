@@ -52,6 +52,8 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'scrooloose/syntastic.git'
+"NERDTree とうつ
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'vim-perl/vim-perl'
@@ -70,7 +72,17 @@ NeoBundle 'open-browser.vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'taichouchou2/html5.vim'
+NeoBundle 'jiangmiao/simple-javascript-indenter'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+
+"jiangmiao/simple-javascript-indenter setting
+let g:SimpleJsIndenter_BriefMode = 1
+
+"NERDTreeSetting
+nmap <Leader>t :NERDTree<Enter>
+
+
+
 
 ".t ファイルなどをperlのファイルとみなすようにする
 augroup filetypedetect
