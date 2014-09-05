@@ -57,10 +57,20 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'vim-perl/vim-perl'
+".local.vimrcを読むようになる
+NeoBundle 'thinca/vim-localrc'
+":Ref perldoc strictでカーソルを合わせたモジュールのperldocをひらく
+"gfでそのソースを開ける
+NeoBundle 'thinca/vim-ref'
 
 "syntastic on
 let g:syntastic_enable_signs=1
 let g:syntastic_enable_perl_checker=1
+let g:syntastic_perl_checkers=["perl", "podchecker"]
+"node npm をインストールしてjshintを入れる必要がある
+"sudo npm install jshint -g 
+let g:syntastic_enable_javascript_checker=1
+let g:syntastic_javascript_checkers=["jshint"]
 let g:syntastic_auto_loc_list=2
 
 "http://qiita.com/alpaca_taichou/items/056a4c42fe7a928973e6
