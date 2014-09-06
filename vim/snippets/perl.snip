@@ -13,3 +13,12 @@ snippet dbpre
 
 snippet dump
     use Data::Dumper; print Dumper(${1:code});
+
+snippet mjdump
+    {
+        use Data::Dumper; use Mojo::Log;
+        my $str = Dumper(${1:code});
+        my $log = Mojo::Log->new(path=>'.mojo.log')
+            ->debug($str);
+    }
+
