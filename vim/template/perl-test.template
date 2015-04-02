@@ -3,5 +3,6 @@
 use strict;
 use warnings;
 use Test::More;
+use Scope::Guard;
 
 done_testing;

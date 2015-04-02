@@ -18,7 +18,23 @@ snippet mjdump
     {
         use Data::Dumper; use Mojo::Log;
         my $str = Dumper(${1:code});
-        my $log = Mojo::Log->new(path=>'.mojo.log')
+        my $log = Mojo::Log->new(path=>'./mojo.log')
             ->debug($str);
     }
 
+snippet tldump
+    use Data::Dumper; $TL->log(Dumper(${1:code}));
+
+snippet subtest
+    subtest '${1:name}' => sub {
+
+    };
+
+snippet subtestset
+    subtest '${1:name}' => sub {
+        my $setup = sub {
+            Scope::Guard->new(sub {
+
+            });
+        };
+    };
