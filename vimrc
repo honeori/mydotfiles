@@ -6,9 +6,10 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=0
 """ Use the appropriate number of spaces to insert a <Tab>
-"set expandtab
+set expandtab
 "vimgrep で別ウィンドウが開く
 autocmd  QuickFixCmdPost *grep* cwindow
+autocmd FileType html,xhtml,css,yaml setlocal ts=2 sts=2
 "quickrun を横に表示する
 let g:quickrun_config={
 \	'_' : {
@@ -39,58 +40,65 @@ filetype plugin indent off
 ":NeoBundleInstall でインストルできる
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle/'))
+  call neobundle#begin(expand('~/.vim/bundle/'))
+
+  " originalrepos on github
+  NeoBundle 'Shougo/neobundle.vim'
+  "NeoBundle 'Shougo/vimproc'
+  "NeoBundle 'Shougo/vimshell'
+  NeoBundle 'Shougo/unite.vim'
+  NeoBundle 'Shougo/neomru.vim'
+  NeoBundle 'Shougo/neocomplcache'
+  NeoBundle 'Shougo/neosnippet'
+  NeoBundle 'Shougo/neosnippet-snippets'
+  NeoBundle 'scrooloose/syntastic.git'
+  "NERDTree とうつ
+  NeoBundle 'scrooloose/nerdtree'
+  NeoBundle 'kien/ctrlp.vim'
+  NeoBundle 'thinca/vim-quickrun'
+  NeoBundle 'vim-perl/vim-perl'
+  ".local.vimrcを読むようになる
+  NeoBundle 'thinca/vim-localrc'
+  ":Ref perldoc strictでカーソルを合わせたモジュールのperldocをひらく
+  "gfでそのソースを開ける
+  NeoBundle 'thinca/vim-ref'
+  
+  "mojoliciousのtemplate用のsyntaxファイル
+  NeoBundle 'yko/mojo.vim'
+  let mojo_highlight_data = 1
+  
+  "syntastic on
+  "let g:syntastic_enable_signs=1
+  let g:syntastic_enable_signs=0
+  let g:syntastic_enable_perl_checker=1
+  "let g:syntastic_perl_checkers=["perl", "podchecker"]
+  let g:syntastic_perl_checkers=["podchecker", "perl"]
+  "node npm をインストールしてjshintを入れる必要がある
+  "sudo npm install jshint -g 
+  let g:syntastic_enable_javascript_checker=1
+  let g:syntastic_javascript_checkers=["jshint"]
+  let g:syntastic_auto_loc_list=2
+  
+  "http://qiita.com/alpaca_taichou/items/056a4c42fe7a928973e6
+  "div>ul>li <C-y>, とかでうまいことしてくれる
+  NeoBundle 'mattn/emmet-vim'
+  "vで選択して　S'とかする
+  NeoBundle 'tpope/vim-surround'
+  NeoBundle 'open-browser.vim'
+  NeoBundle 'mattn/webapi-vim'
+  NeoBundle 'hail2u/vim-css3-syntax'
+  NeoBundle 'taichouchou2/html5.vim'
+  NeoBundle 'jiangmiao/simple-javascript-indenter'
+  NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+  
+  "jiangmiao/simple-javascript-indenter setting
+  let g:SimpleJsIndenter_BriefMode = 1
+  
+  "NERDTreeSetting
+  nmap <Leader>t :NERDTree<Enter>
+
+  call neobundle#end()
 endif
-
-" originalrepos on github
-NeoBundle 'Shougo/neobundle.vim'
-"NeoBundle 'Shougo/vimproc'
-"NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'scrooloose/syntastic.git'
-"NERDTree とうつ
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'vim-perl/vim-perl'
-".local.vimrcを読むようになる
-NeoBundle 'thinca/vim-localrc'
-":Ref perldoc strictでカーソルを合わせたモジュールのperldocをひらく
-"gfでそのソースを開ける
-NeoBundle 'thinca/vim-ref'
-
-"syntastic on
-let g:syntastic_enable_signs=1
-let g:syntastic_enable_perl_checker=1
-let g:syntastic_perl_checkers=["perl", "podchecker"]
-"node npm をインストールしてjshintを入れる必要がある
-"sudo npm install jshint -g 
-let g:syntastic_enable_javascript_checker=1
-let g:syntastic_javascript_checkers=["jshint"]
-let g:syntastic_auto_loc_list=2
-
-"http://qiita.com/alpaca_taichou/items/056a4c42fe7a928973e6
-"div>ul>li <C-y>, とかでうまいことしてくれる
-NeoBundle 'mattn/emmet-vim'
-"vで選択して　S'とかする
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'open-browser.vim'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'taichouchou2/html5.vim'
-NeoBundle 'jiangmiao/simple-javascript-indenter'
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-
-"jiangmiao/simple-javascript-indenter setting
-let g:SimpleJsIndenter_BriefMode = 1
-
-"NERDTreeSetting
-nmap <Leader>t :NERDTree<Enter>
-
 
 
 
@@ -102,6 +110,8 @@ augroup filetypedetect
  au BufNewFile, BufRead *.tt2  setf tt2html
  au BufNewFile, BufRead cpanfile  setf perl
 augroup END
+
+au BufNewFile,BufRead *.psgi set filetype=perl
 
 "空のファイルを作成したときのテンプレート
 autocmd BufNewFile *.pl 0r $HOME/.vim/template/perl-script.template
