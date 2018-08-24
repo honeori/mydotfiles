@@ -116,6 +116,7 @@ au BufNewFile,BufRead *.psgi set filetype=perl
 "空のファイルを作成したときのテンプレート
 autocmd BufNewFile *.pl 0r $HOME/.vim/template/perl-script.template
 autocmd BufNewFile *.t 0r $HOME/.vim/template/perl-test.template
+autocmd BufNewFile test_*.py 0r $HOME/.vim/template/python-test.template
 
 "" neosnippet
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
