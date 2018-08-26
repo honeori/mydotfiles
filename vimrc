@@ -89,6 +89,7 @@ if has('vim_starting')
   NeoBundle 'hail2u/vim-css3-syntax'
   NeoBundle 'taichouchou2/html5.vim'
   NeoBundle 'jiangmiao/simple-javascript-indenter'
+  NeoBundle 'rust-lang/rust.vim'
   NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
   
   "jiangmiao/simple-javascript-indenter setting
