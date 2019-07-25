@@ -31,7 +31,7 @@ sub ensure_git_installed {
 sub copy_hidden_files {
     foreach my $src_file (@HIDDEN_FILES) {
         my $abs_src_file = "$Bin/$src_file";
-        my $dst_file = sprintf('~/.%s', $src_file);
+        my $dst_file = sprintf('%s/.%s', $ENV{'HOME'}, $src_file);
         copy $abs_src_file, $dst_file or die "failed to copy src:$src_file, dst:$dst_file $!";
     }
 }
