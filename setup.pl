@@ -21,9 +21,9 @@ sub main {
 }
 
 sub ensure_git_installed {
-    if (!-x '/usr/bin/git'      &&
-        !-x '/usr/local/bin/git'
-    ) {
+    system 'which git > /dev/null';
+    my $is_executable = $? == 0;
+    if (!$is_executable) {
         die 'git is required';
     }
 }
